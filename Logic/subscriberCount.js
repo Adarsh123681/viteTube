@@ -3,13 +3,12 @@ const SubscriberCount = require("../model/subscriptionSchema");
 const mongoose = require("mongoose");
 // get subscriber for the user
 const getSubscriber = async (req, res) => {
-  const userId = req.params.userId;
-
+  const userId = req.params.userId; 
   try {
     const subscriberCount = await SubscriberCount.findOne({ userId });
     res.json(subscriberCount);
   } catch (error) {
-    console.error(error);
+     
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

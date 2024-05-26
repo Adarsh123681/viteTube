@@ -62,7 +62,7 @@ const aboutPage = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   const getUser = await user.find();
-  console.log(getUser);
+  
   if (!getUser) {
     console.log("all users are not found");
   } else {
@@ -72,7 +72,7 @@ const getAllUsers = async (req, res) => {
 
 const getUserWithId = async (req, res) => {
   const getSpecificUser = await req.params._id;
-  console.log(getSpecificUser);
+   
   const findUserWithId = await user.findById(getSpecificUser);
   if (!findUserWithId) {
     res.status(400).json({ message: "user is not found with the id" });

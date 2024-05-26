@@ -19,8 +19,7 @@ const create_playlist = async (req, res) => {
   } else {
     res.status(400).json({ msg: "playlist not created" });
   }
-};
-
+}; 
 // add videos to playlist
 const addVideos_to_playlist = async (req, res) => {
   try {
@@ -50,16 +49,9 @@ const addVideos_to_playlist = async (req, res) => {
 };
 
 const get_all_playlist = async (req, res) => {
-  // const userId = req.params.userId;
-  // if (!userId) {
-  //   res.status(400).json({ msg: "user_Not_found" });
-  // } else {
-  //   res.status(200).json({ msg: "getting all playlist of a user" });
-  // }
   const findPlaylist = await PlayList.find();
   if (findPlaylist) {
-    console.log("Playlist are founded..");
-    console.log(findPlaylist);
+     res.status
   } else {
     console.log("playlist are not founded");
   }

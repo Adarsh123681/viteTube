@@ -2,26 +2,26 @@ const comments = require("../model/Comment");
 const User = require("../model/Userschema");
 const Video = require("../model/videoSchema");
 
-// const videoUpload = async (req, res) => {
-//   try {
-//     const { title, description } = req.body;
-//     const { link } = req.file;
-//     const video = await Video.create({
-//       title,
-//       filePath: link,
-//       description,
-//       uploadDate: Date.now(),
-//     });
-//     if (!video) {
-//       console.log("something is wrong.....");
-//     } else {
-//       console.log("video created");
-//       res.status(200).json({ msg: video });
-//     }
-//   } catch (error) {
-//     res.status(500).send(error);
-//   }
-// };
+const videoUpload = async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    const { link } = req.file;
+    const video = await Video.create({
+      title,
+      filePath: link,
+      description,
+      uploadDate: Date.now(),
+    });
+    if (!video) {
+      console.log("something is wrong.....");
+    } else {
+      console.log("video created");
+      res.status(200).json({ msg: video });
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 const getAllVideos = async (req, res) => {
   try {
@@ -38,13 +38,11 @@ const getAllVideos = async (req, res) => {
 const getUserVideo = async (req, res) => {
   try {
     const videoId = req.params.videoId;
-    console.log();
     const getvideo = await Video.findById(videoId);
-    console.log(getvideo);
-    if (getvideo) {
+    if (!getvideo) {
       return res.status(400).json(getvideo);
     } else {
-      // console.log("error");
+      return res.status(200).json(getvideo);
     }
   } catch (error) {
     res.status(401).json({ mes: error });
@@ -110,6 +108,8 @@ const pushComment = async (req, res) => {
   await findVideo.save()
   res.json(findVideo)
 };
+
+
 module.exports = {
   getAllVideos,
   getUserVideo,

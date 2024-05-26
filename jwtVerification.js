@@ -11,13 +11,11 @@ const auth = async (req, res, next) => {
       .json({ message: "Unauthorized - No Bearer Token provided" });
   }
 
-  const token = await authHeader.replace("Bearer ", "").trim();
-  console.log(token);
+  const token = await authHeader.replace("Bearer ", "").trim(); 
   // Verify the token using the provided secret key
   try {
-    const verified = jwt.verify(token, "adarshtripathidsfvngjtudopwqxmvngh");
-    console.log(verified);
-    // Attach the decoded token to the request object for further use
+    const verified = jwt.verify(token, "enter your secret token here"); 
+  //  decode here
     if (!verified) {
       res.status(400).json({ message: "Authorization failed token not Found" });
     } else {
